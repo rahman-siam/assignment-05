@@ -42,3 +42,24 @@ for(const btn of callButtons){
   });
 }
 
+// Clear functionality
+document.getElementById('clear-btn').addEventListener('click', function(){
+  while(historyPart.children.length > 1){
+    historyPart.removeChild(historyPart.lastChild);
+  }
+})
+
+// Copy Button functionality
+const copyBtn = document.getElementsByClassName("copy-btn");
+for(const btn of copyBtn){
+  btn.addEventListener('click', function(){
+    const card = btn.closest('.card');
+    const number = card.querySelector('.card-number').innerText;
+
+    navigator.clipboard.writeText(number).then(() => {
+      alert("Copied!");
+      const copyBox = parseInt(document.getElementById("copy-box").innerText);
+      document.getElementById("copy-box").innerText = copyBox + 1;
+    })
+  })
+}
